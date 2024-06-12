@@ -154,7 +154,7 @@ def solve_puzzle(start, goal, result, heuristic):
     end_time = time.time()
     print(f"No solution found. Time taken: {end_time - start_time:.5f} seconds")
 
-def iddfs(start, goal, result):
+def IDS(start, goal, result):
     def dls(node, depth, count_NoM):
         if node.is_goal():
             return node, count_NoM
@@ -201,8 +201,8 @@ for i in range(50):
     solve_puzzle(start, goal, h1_results, heuristic="h1")
     solve_puzzle(start, goal, h2_results, heuristic="h2")
 
-    # Solve the 8-puzzle using IDDFS
-    iddfs(start, goal, ids_results)
+    # Solve the 8-puzzle using IDS
+    IDS(start, goal, ids_results)
 
     print("number", i, "done")
 
@@ -217,12 +217,12 @@ def print_results(heuristic, results):
 print_results("h0", h0_results)
 print_results("h1", h1_results)
 print_results("h2", h2_results)
-print_results("IDDFS", ids_results)
+print_results("IDS", ids_results)
 
 print('h0', h0_results)
 print('h1', h1_results)
 print('h2', h2_results)
-print('IDDFS', ids_results)
+print('IDS', ids_results)
 
 
 # Save results to CSV
@@ -244,8 +244,8 @@ def save_results_to_csv(filename, h0_results, h1_results, h2_results, ids_result
         for i in range(len(h2_results[0])):
             writer.writerow(["h2", h2_results[0][i], h2_results[1][i], h2_results[2][i]])
         
-        # Write IDDFS results
+        # Write IDS results
         for i in range(len(ids_results[0])):
-            writer.writerow(["IDDFS", ids_results[0][i], ids_results[1][i], ids_results[2][i]])
+            writer.writerow(["IDS", ids_results[0][i], ids_results[1][i], ids_results[2][i]])
 
 save_results_to_csv('puzzle_results_30.csv', h0_results, h1_results, h2_results, ids_results)
